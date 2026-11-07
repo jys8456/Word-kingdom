@@ -1,0 +1,27 @@
+{
+  "name": "word-kingdom",
+  "version": "1.0.0",
+  "description": "한국인 학습자를 위한 테마별 영어 단어 퍼즐 게임",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host",
+    "test": "vitest run",
+    "typecheck": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jys8456/Word-kingdom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jys8456/Word-kingdom/issues"
+  },
+  "homepage": "https://github.com/jys8456/Word-kingdom#readme",
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  },
+  "private": true,
+  "type": "module"
+}

@@ -1,0 +1,525 @@
+{
+  "id": "deck-of-cards",
+  "theme": "Deck of Cards",
+  "themeKo": "카드 한 벌",
+  "stages": [
+    {
+      "id": "cards-01",
+      "title": "카드 첫걸음",
+      "type": "crossword",
+      "grid": [
+        "CARD",
+        ".C..",
+        "DECK"
+      ],
+      "entries": [
+        {
+          "answer": "CARD",
+          "ko": "카드",
+          "example": "Pick a card, any card.",
+          "row": 0,
+          "col": 0,
+          "dir": "across"
+        },
+        {
+          "answer": "ACE",
+          "ko": "에이스 (카드의 1)",
+          "example": "She has an ace in her hand.",
+          "row": 0,
+          "col": 1,
+          "dir": "down"
+        },
+        {
+          "answer": "DECK",
+          "ko": "카드 한 벌",
+          "example": "A deck has 52 cards.",
+          "row": 2,
+          "col": 0,
+          "dir": "across"
+        }
+      ]
+    },
+    {
+      "id": "cards-02",
+      "title": "네 가지 무늬",
+      "type": "crossword",
+      "grid": [
+        "....S.",
+        "..CLUB",
+        "....I.",
+        "HEART.",
+        "...E..",
+        "SPADE."
+      ],
+      "entries": [
+        {
+          "answer": "SUIT",
+          "ko": "카드 무늬; 정장",
+          "example": "Spades is my favorite suit.",
+          "row": 0,
+          "col": 4,
+          "dir": "down"
+        },
+        {
+          "answer": "CLUB",
+          "ko": "클럽(♣); 동아리",
+          "example": "I joined the chess club.",
+          "row": 1,
+          "col": 2,
+          "dir": "across"
+        },
+        {
+          "answer": "HEART",
+          "ko": "하트; 심장, 마음",
+          "example": "My heart is beating fast.",
+          "row": 3,
+          "col": 0,
+          "dir": "across"
+        },
+        {
+          "answer": "RED",
+          "ko": "빨간",
+          "example": "Hearts and diamonds are red.",
+          "row": 3,
+          "col": 3,
+          "dir": "down"
+        },
+        {
+          "answer": "SPADE",
+          "ko": "스페이드(♠); 삽",
+          "example": "Is that a spade or a club?",
+          "row": 5,
+          "col": 0,
+          "dir": "across"
+        }
+      ]
+    },
+    {
+      "id": "cards-03",
+      "title": "왕실 가족",
+      "type": "crossword",
+      "grid": [
+        "...JACK",
+        "...O..I",
+        "...K..N",
+        "QUEEN.G",
+        "...R..."
+      ],
+      "entries": [
+        {
+          "answer": "JOKER",
+          "ko": "조커; 농담을 잘하는 사람",
+          "example": "The joker can be any card.",
+          "row": 0,
+          "col": 3,
+          "dir": "down"
+        },
+        {
+          "answer": "JACK",
+          "ko": "잭 (카드의 J)",
+          "example": "The jack is worth ten points.",
+          "row": 0,
+          "col": 3,
+          "dir": "across"
+        },
+        {
+          "answer": "KING",
+          "ko": "왕; 킹",
+          "example": "The king wears a gold crown.",
+          "row": 0,
+          "col": 6,
+          "dir": "down"
+        },
+        {
+          "answer": "QUEEN",
+          "ko": "여왕; 퀸",
+          "example": "The queen lives in a castle.",
+          "row": 3,
+          "col": 0,
+          "dir": "across"
+        }
+      ]
+    },
+    {
+      "id": "cards-04",
+      "title": "게임 준비",
+      "type": "crossword",
+      "grid": [
+        "SHUFFLE",
+        ".A.....",
+        ".N.P...",
+        ".DEAL..",
+        "...I...",
+        "...R..."
+      ],
+      "entries": [
+        {
+          "answer": "SHUFFLE",
+          "ko": "섞다",
+          "example": "Please shuffle the cards before we play.",
+          "row": 0,
+          "col": 0,
+          "dir": "across"
+        },
+        {
+          "answer": "HAND",
+          "ko": "손; 손에 든 패",
+          "example": "Raise your hand if you know.",
+          "row": 0,
+          "col": 1,
+          "dir": "down"
+        },
+        {
+          "answer": "PAIR",
+          "ko": "한 쌍, 한 켤레",
+          "example": "I bought a new pair of shoes.",
+          "row": 2,
+          "col": 3,
+          "dir": "down"
+        },
+        {
+          "answer": "DEAL",
+          "ko": "(카드를) 나누어 주다; 거래",
+          "example": "It's your turn to deal.",
+          "row": 3,
+          "col": 1,
+          "dir": "across"
+        }
+      ]
+    },
+    {
+      "id": "cards-05",
+      "title": "테이블 위에서",
+      "type": "crossword",
+      "grid": [
+        ".FLIP.",
+        "....I.",
+        ".TABLE",
+        ".U..E.",
+        "DRAW..",
+        ".N...."
+      ],
+      "entries": [
+        {
+          "answer": "FLIP",
+          "ko": "뒤집다",
+          "example": "Flip the card over.",
+          "row": 0,
+          "col": 1,
+          "dir": "across"
+        },
+        {
+          "answer": "PILE",
+          "ko": "더미, 쌓아 놓은 것",
+          "example": "There is a pile of books on my desk.",
+          "row": 0,
+          "col": 4,
+          "dir": "down"
+        },
+        {
+          "answer": "TABLE",
+          "ko": "탁자, 테이블",
+          "example": "Put the cards on the table.",
+          "row": 2,
+          "col": 1,
+          "dir": "across"
+        },
+        {
+          "answer": "TURN",
+          "ko": "차례; 돌리다",
+          "example": "Please wait for your turn.",
+          "row": 2,
+          "col": 1,
+          "dir": "down"
+        },
+        {
+          "answer": "DRAW",
+          "ko": "뽑다; 그리다",
+          "example": "Draw one card from the deck.",
+          "row": 4,
+          "col": 0,
+          "dir": "across"
+        }
+      ]
+    },
+    {
+      "id": "cards-06",
+      "title": "내기 한 판",
+      "type": "crossword",
+      "grid": [
+        "LUCK...",
+        "O.H....",
+        "S.I.W.B",
+        "E.PRIZE",
+        "....N.T"
+      ],
+      "entries": [
+        {
+          "answer": "LUCK",
+          "ko": "운, 행운",
+          "example": "Good luck on your test!",
+          "row": 0,
+          "col": 0,
+          "dir": "across"
+        },
+        {
+          "answer": "LOSE",
+          "ko": "지다; 잃어버리다",
+          "example": "Don't lose your keys.",
+          "row": 0,
+          "col": 0,
+          "dir": "down"
+        },
+        {
+          "answer": "CHIP",
+          "ko": "칩; 조각",
+          "example": "Each chip is worth one dollar.",
+          "row": 0,
+          "col": 2,
+          "dir": "down"
+        },
+        {
+          "answer": "WIN",
+          "ko": "이기다",
+          "example": "We want to win the game.",
+          "row": 2,
+          "col": 4,
+          "dir": "down"
+        },
+        {
+          "answer": "BET",
+          "ko": "내기하다, (돈을) 걸다",
+          "example": "I bet you can't do it.",
+          "row": 2,
+          "col": 6,
+          "dir": "down"
+        },
+        {
+          "answer": "PRIZE",
+          "ko": "상, 상품",
+          "example": "She won first prize.",
+          "row": 3,
+          "col": 2,
+          "dir": "across"
+        }
+      ]
+    },
+    {
+      "id": "cards-07",
+      "title": "점수판",
+      "type": "crossword",
+      "grid": [
+        "...P..",
+        ".SCORE",
+        "...I..",
+        "ROUND.",
+        "A..T..",
+        "N.....",
+        "K....."
+      ],
+      "entries": [
+        {
+          "answer": "POINT",
+          "ko": "점수; 요점",
+          "example": "You get one point for each card.",
+          "row": 0,
+          "col": 3,
+          "dir": "down"
+        },
+        {
+          "answer": "SCORE",
+          "ko": "점수",
+          "example": "What's the score now?",
+          "row": 1,
+          "col": 1,
+          "dir": "across"
+        },
+        {
+          "answer": "ROUND",
+          "ko": "(경기의) 한 판, 회",
+          "example": "Let's play one more round.",
+          "row": 3,
+          "col": 0,
+          "dir": "across"
+        },
+        {
+          "answer": "RANK",
+          "ko": "순위, 계급",
+          "example": "The king has a high rank.",
+          "row": 3,
+          "col": 0,
+          "dir": "down"
+        }
+      ]
+    },
+    {
+      "id": "cards-08",
+      "title": "속임수",
+      "type": "crossword",
+      "grid": [
+        ".B....",
+        ".L....",
+        "RULE..",
+        ".F....",
+        ".FOLD.",
+        "...I..",
+        ".CHEAT"
+      ],
+      "entries": [
+        {
+          "answer": "BLUFF",
+          "ko": "허세를 부리다",
+          "example": "I think he is going to bluff.",
+          "row": 0,
+          "col": 1,
+          "dir": "down"
+        },
+        {
+          "answer": "RULE",
+          "ko": "규칙",
+          "example": "That's the first rule of the game.",
+          "row": 2,
+          "col": 0,
+          "dir": "across"
+        },
+        {
+          "answer": "FOLD",
+          "ko": "접다; (카드 게임에서) 포기하다",
+          "example": "Fold the paper in half.",
+          "row": 4,
+          "col": 1,
+          "dir": "across"
+        },
+        {
+          "answer": "LIE",
+          "ko": "거짓말; 거짓말하다",
+          "example": "Don't tell a lie.",
+          "row": 4,
+          "col": 3,
+          "dir": "down"
+        },
+        {
+          "answer": "CHEAT",
+          "ko": "속이다, 부정행위를 하다",
+          "example": "Never cheat on a test.",
+          "row": 6,
+          "col": 1,
+          "dir": "across"
+        }
+      ]
+    },
+    {
+      "id": "cards-09",
+      "title": "숫자 놀이",
+      "type": "crossword",
+      "grid": [
+        "..MATCH",
+        "....O..",
+        "....T..",
+        "O...A..",
+        "DOUBLE.",
+        "D....V.",
+        ".....E.",
+        ".....N."
+      ],
+      "entries": [
+        {
+          "answer": "MATCH",
+          "ko": "짝을 맞추다; 경기",
+          "example": "Match each card with its pair.",
+          "row": 0,
+          "col": 2,
+          "dir": "across"
+        },
+        {
+          "answer": "TOTAL",
+          "ko": "합계; 전체의",
+          "example": "The total is twenty points.",
+          "row": 0,
+          "col": 4,
+          "dir": "down"
+        },
+        {
+          "answer": "ODD",
+          "ko": "홀수의; 이상한",
+          "example": "Three is an odd number.",
+          "row": 3,
+          "col": 0,
+          "dir": "down"
+        },
+        {
+          "answer": "DOUBLE",
+          "ko": "두 배의; 두 배로 하다",
+          "example": "Your bet is now double.",
+          "row": 4,
+          "col": 0,
+          "dir": "across"
+        },
+        {
+          "answer": "EVEN",
+          "ko": "짝수의; ~조차",
+          "example": "Two is an even number.",
+          "row": 4,
+          "col": 5,
+          "dir": "down"
+        }
+      ]
+    },
+    {
+      "id": "cards-10",
+      "title": "마지막 승부",
+      "type": "crossword",
+      "grid": [
+        "......G",
+        "P..C..U",
+        "L..HIDE",
+        "A..A..S",
+        "Y..N..S",
+        "E..C...",
+        "REVEAL."
+      ],
+      "entries": [
+        {
+          "answer": "GUESS",
+          "ko": "추측하다, 알아맞히다",
+          "example": "Can you guess my card?",
+          "row": 0,
+          "col": 6,
+          "dir": "down"
+        },
+        {
+          "answer": "PLAYER",
+          "ko": "선수, 게임 참가자",
+          "example": "Each player gets five cards.",
+          "row": 1,
+          "col": 0,
+          "dir": "down"
+        },
+        {
+          "answer": "CHANCE",
+          "ko": "기회; 가능성",
+          "example": "Give me one more chance.",
+          "row": 1,
+          "col": 3,
+          "dir": "down"
+        },
+        {
+          "answer": "HIDE",
+          "ko": "숨기다, 숨다",
+          "example": "Hide the card behind your back.",
+          "row": 2,
+          "col": 3,
+          "dir": "across"
+        },
+        {
+          "answer": "REVEAL",
+          "ko": "드러내다, 공개하다",
+          "example": "Reveal your cards now.",
+          "row": 6,
+          "col": 0,
+          "dir": "across"
+        }
+      ]
+    }
+  ]
+}
