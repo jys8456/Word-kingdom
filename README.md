@@ -12,6 +12,7 @@
 | [docs/UX_SPEC.md](docs/UX_SPEC.md) | UX 설계 — 정보 구조, 사용자 흐름, 화면 명세, 디자인 시스템 |
 | [docs/ADMIN_SPEC.md](docs/ADMIN_SPEC.md) | 관리자 — 메뉴 구조, 권한, 대시보드·콘텐츠 관리·발행·원격 설정 |
 | [docs/DEV_PLAN.md](docs/DEV_PLAN.md) | 개발 계획 — **개발 도구 전체 목록**, 모노레포 구조, 승인 게이트, 일정, 앱스토어 출시 |
+| [docs/COST.md](docs/COST.md) | 비용 — 항목별 무료 범위·유료 전환 시점, 첫해 최소 약 ₩17만 |
 | [docs/OPERATIONS.md](docs/OPERATIONS.md) | 운영·유지보수 — 모니터링, 정기 점검, 릴리스·롤백, 백업, 보안, 비용 |
 | [docs/HANDOFF.md](docs/HANDOFF.md) | 기획 대화 인계 브리프 (원본) |
 

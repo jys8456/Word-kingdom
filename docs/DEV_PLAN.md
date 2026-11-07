@@ -5,7 +5,7 @@
 | 문서 버전 | v0.1 (검토 요청용 초안) |
 | 작성일 | 2026-11-07 |
 | 상태 | 🟡 검토 대기 — **G0 승인 전까지 코드 작업 없음** |
-| 관련 문서 | [PRD](./PRD.md) · [UX 설계서](./UX_SPEC.md) · [관리자 기획서](./ADMIN_SPEC.md) · [운영·유지보수](./OPERATIONS.md) |
+| 관련 문서 | [PRD](./PRD.md) · [UX 설계서](./UX_SPEC.md) · [관리자 기획서](./ADMIN_SPEC.md) · [운영·유지보수](./OPERATIONS.md) · [비용 계획](./COST.md) |
 
 ---
 
@@ -63,7 +63,8 @@
 | pnpm + Turborepo | pnpm 9 | 모노레포 패키지 관리 · 빌드 캐시 |
 | Git + GitHub | – | 소스 관리, 이슈·PR·칸반(Projects) |
 | Android Studio | 최신 | Android 빌드·에뮬레이터 (P6) |
-| Xcode (Mac 필요) | 최신 | iOS 빌드 (P6) |
+| Codemagic (클라우드 Mac) | 무료 월 500분 | iOS 빌드 — **Mac 구매 불필요** (P6) |
+| Google Cloud TTS | 무료 범위 | 발음 음성 파일 미리 생성 |
 
 **② 게임 앱 (`apps/game`)**
 | 도구 | 용도 |
@@ -107,9 +108,9 @@
 | ESLint · Prettier · `tsc` | 코드 규칙 · 포맷 · 타입 검사 |
 | GitHub Actions | PR마다 검사·테스트, 마이그레이션 검증 |
 | Dependabot | 의존성 업데이트 · 보안 경고 |
-| Vercel | 게임 웹 · 관리자 웹 배포, PR마다 미리보기 URL |
+| Cloudflare Pages | 게임 웹 · 관리자 웹 배포, PR마다 미리보기 URL (Vercel 무료 플랜은 상업 이용 불가라 제외) |
 | Sentry | 앱·관리자 오류 수집 |
-| PostHog (또는 자체 집계) | 지표 분석 (D6) |
+| Supabase 자체 집계 | 지표 분석 (D6) — PostHog는 출시 후 필요 시 |
 
 **⑥ 디자인 · 협업**
 | 도구 | 용도 |
@@ -207,7 +208,7 @@ JS 번들 gzip 150KB 이하 · 첫 화면 2초(4G) · Lighthouse 모바일 성�
 ### P2 기반 구축 (2일)
 - [ ] 시안 코드 정리 (§3.1), 모노레포 골격 (pnpm + Turborepo), ESLint/Prettier
 - [ ] Supabase 프로젝트 · DB 구조 1차 (단어·테마·스테이지·발행·로그·원격 설정) · 권한 규칙
-- [ ] GitHub Actions CI, Vercel 미리보기 배포 (게임·관리자)
+- [ ] GitHub Actions CI, Cloudflare Pages 미리보기 배포 (게임·관리자)
 - [ ] 디자인 토큰 + 공통 UI 컴포넌트
 - [ ] 플랫폼 어댑터(저장·발음·진동), 이벤트 로거
 - [ ] G2 코드 리뷰
@@ -217,7 +218,7 @@ JS 번들 gzip 150KB 이하 · 첫 화면 2초(4G) · Lighthouse 모바일 성�
 - [ ] F-08 저장·로깅 · F-09 튜토리얼
 - [ ] 테마 1 콘텐츠 검수 반영
 - [ ] E2E 3개, 실기기 확인
-- [ ] **✅ G3 플레이 가능 빌드 승인** (Vercel 링크로 직접 플레이)
+- [ ] **✅ G3 플레이 가능 빌드 승인** (미리보기 링크로 직접 플레이)
 
 ### P4 확장 기능 (5일)
 - [ ] F-03 워드서치 · F-06 복습+수집품 · F-07 도감 · F-11 설정
@@ -297,10 +298,10 @@ JS 번들 gzip 150KB 이하 · 첫 화면 2초(4G) · Lighthouse 모바일 성�
 |---|---|
 | PRD §13 결정 사항 D1~D8 답변 | G0 |
 | Figma 계정/파일 공유 방식 결정 (제가 시안을 만들어 공유할지, 디자이너 협업할지) | G0 |
-| Vercel 연결 (웹 미리보기) | P2 |
+| Cloudflare 계정 (무료, 웹 미리보기) | P2 |
 | Supabase 계정 · 프로젝트 생성 (무료 플랜) | P2 |
 | Sentry 계정 (무료) | P2 |
 | 콘텐츠 작성·검수 담당자 (관리자 Editor/Reviewer 계정 대상) | P4-A |
 | Google Play 개발자 계정 | P5 시작 전 (14일 테스트 때문에) |
-| Apple 개발자 계정 + Mac 빌드 환경 | P6 |
+| Apple 개발자 계정 ($99/년) + Codemagic 계정 (무료) | P6 |
 | 테스터 10~20명 | P5 |
