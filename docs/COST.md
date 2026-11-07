@@ -57,7 +57,19 @@
 | 데이터베이스 | 500MB | 단어·퍼즐 수 MB + 이벤트 로그 수만 건(수 MB) → 충분 |
 | 파일 저장 | 약 1GB (자료마다 500MB~1GB로 다름) | 음성 파일 약 300개 × 20KB = 약 6MB |
 | 월간 활성 사용자(인증) | 50,000 | 관리자 몇 명만 로그인 → 충분 |
-| 프로젝트 수 | 2개 | 운영 1 + 개발 1 |
+| 무료 프로젝트 수 | **최대 2개** (오너가 이미 다른 프로젝트에서 사용 중 → §2.4.1) | **WORD KINGDOM은 클라우드 프로젝트 1개만 사용**, 개발용 DB는 내 컴퓨터(로컬)에서 실행 |
+
+#### 2.4.1 오너의 기존 Supabase 프로젝트와 함께 쓸 때 (오너 확인 반영)
+| 확인 사항 | 내용 |
+|---|---|
+| 무료 프로젝트 한도 | 공식 요금표: "활성 프로젝트 2개". 조직(organization)별 한도인지 **사용자 계정 전체 한도인지는 자료마다 다름** → 오너 대시보드에서 확인 필요 (Q26) |
+| 우리 계획 | 클라우드는 **운영 프로젝트 1개만** 생성. 개발·테스트용 DB는 Supabase CLI로 **로컬에서 무료 실행** → 무료 슬롯 1개만 사용 |
+| 경우 ① 기존 프로젝트가 1개 | ✅ 남은 1개로 WORD KINGDOM 운영 가능 — 계속 무료 |
+| 경우 ② 기존 프로젝트가 이미 2개 | ❌ 무료 슬롯 없음 → (가) 기존 프로젝트 하나를 일시 정지·정리 (나) WORD KINGDOM을 Pro로 시작 ($25/월) 중 선택 |
+| 서로 영향 | 프로젝트끼리 DB·한도(500MB 등)는 **프로젝트별로 따로** 계산 — 기존 프로젝트에 영향 없음 |
+| 유료 전환 시 | Pro는 **조직 단위 $25/월**이고 프로젝트 1개분 컴퓨팅($10)이 포함. 같은 Pro 조직에 프로젝트를 더 두면 프로젝트당 약 $10/월 추가 → **WORD KINGDOM은 별도 조직**으로 만들어 기존 프로젝트 요금과 섞이지 않게 권장 |
+
+**결론:** 기존 프로젝트가 1개라면 출시 전까지 **추가 비용 ₩0**으로 가능. 정식 출시 후 실사용자가 생기면 WORD KINGDOM 조직만 Pro($25/월)로 올림.
 
 **⚠️ 주의 1 — 7일 동안 사용이 없으면 일시 정지됩니다.** 데이터는 남지만 복구할 때까지 응답하지 않습니다.
 - 대응: ① 게임은 **오프라인 우선**이라 서버가 멈춰도 플레이 가능 (콘텐츠 앱 내장) ② 테스트 기간엔 GitHub Actions로 하루 1회 접속 신호를 보내 정지 방지 (무료) ③ 정식 출시 후에는 Pro로 전환
@@ -148,7 +160,8 @@
 ---
 
 ## 6. 참고 자료 (요금 확인 출처)
-- Supabase 무료 플랜 (500MB DB, 7일 미사용 시 정지, Pro $25): [makerkit.dev](https://makerkit.dev/blog/saas/supabase-pricing), [jetadmin.io](https://www.jetadmin.io/blog/supabase-pricing-2026-guide-to-plans-limits-and-real-world-costs/)
+- Supabase 무료 플랜 (500MB DB, 7일 미사용 시 정지, 활성 프로젝트 2개, Pro $25·컴퓨팅 크레딧 $10): [supabase.com/pricing](https://supabase.com/pricing), [jetadmin.io 2](https://www.jetadmin.io/blog/supabase-pricing-2026-guide-to-plans-limits-and-real-world-costs/)
+- Supabase 1차 자료: [makerkit.dev](https://makerkit.dev/blog/saas/supabase-pricing), [jetadmin.io](https://www.jetadmin.io/blog/supabase-pricing-2026-guide-to-plans-limits-and-real-world-costs/)
 - Vercel Hobby 비상업 용도 제한: [Vercel 공정 사용 정책](https://vercel.com/docs/limits/fair-use-guidelines)
 - Cloudflare Pages 무료 한도: [Cloudflare 공식 문서](https://developers.cloudflare.com/pages/platform/limits)
 - Sentry Developer 무료 5,000 오류: [activepieces.com](https://www.activepieces.com/blog/sentry-pricing-2026-developer-team-business-plans)
