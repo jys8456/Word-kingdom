@@ -5,7 +5,7 @@
 | 문서 버전 | v0.1 (검토 요청용 초안) |
 | 작성일 | 2026-11-07 |
 | 상태 | 🟡 검토 대기 — **G0 승인 전까지 코드 작업 없음** |
-| 관련 문서 | [PRD](./PRD.md) · [UX 설계서](./UX_SPEC.md) |
+| 관련 문서 | [PRD](./PRD.md) · [UX 설계서](./UX_SPEC.md) · [관리자 기획서](./ADMIN_SPEC.md) · [운영·유지보수](./OPERATIONS.md) |
 
 ---
 
@@ -36,34 +36,86 @@
 | 이후 유지보수 (1인 개발) | ◎ 한 코드베이스 | ○ Dart 학습 | ○ |
 
 ### 2.2 결정 (승인 요청 D1)
-**A안: React + TypeScript + Vite, 앱은 Capacitor로 감싸기.**
+**A안: React + TypeScript + Vite, 앱은 Capacitor로 감싸기. 서버·관리자는 Supabase.**
 
-이유: MVP의 목적은 **웹 링크로 빠르게 가설 검증**(PRD §2)이고, 검증이 되면 **같은 코드**로 스토어에 올릴 수 있습니다. 퍼즐 게임은 DOM/CSS로 충분히 매끄럽게 만들 수 있습니다. iOS 4.2 리스크는 오프라인 동작·햅틱·로컬 알림·네이티브 TTS로 보완합니다.
+이유: MVP의 목적은 **웹 링크로 빠르게 가설 검증**(PRD §2)이고, 검증이 되면 **같은 코드**로 스토어에 올릴 수 있습니다. 관리자 웹도 같은 언어·같은 퍼즐 엔진을 쓰므로 1인 개발로 유지보수가 가능합니다. iOS 4.2 리스크는 오프라인 동작·햅틱·로컬 알림·네이티브 TTS로 보완합니다.
 
-### 2.3 도구 목록
+### 2.3 전체 구성
+```
+                  ┌───────────────────── 모노레포 (GitHub 저장소 1개) ─────────────────────┐
+                  │  apps/game      게임 (웹 · Android · iOS)                              │
+                  │  apps/admin     관리자 웹                                               │
+                  │  packages/engine   퍼즐 엔진 · 검사 규칙 · 별 계산 (순수 TS)  ← 둘이 공유 │
+                  │  packages/ui       디자인 시스템 컴포넌트                     ← 둘이 공유 │
+                  │  packages/content  콘텐츠 형식 정의(스키마) · 검사            ← 둘이 공유 │
+                  │  supabase/      DB 구조 · 권한 규칙 · 서버 함수 (Git으로 관리)           │
+                  └──────────────────────────────────────────────────────────────────────┘
+게임 앱 ⇄ Supabase (콘텐츠 내려받기 · 로그 올리기 · 원격 설정)   관리자 웹 ⇄ Supabase (로그인 필수)
+```
 
-| 영역 | 도구 | 용도 |
+### 2.4 개발 도구 한눈에
+
+**① 개발 환경**
+| 도구 | 버전/플랜 | 용도 |
 |---|---|---|
-| 언어 | TypeScript (strict) | 전체 |
-| UI | React 18 | 화면·컴포넌트 |
-| 빌드 | Vite | 개발 서버·번들 |
-| 상태 관리 | Zustand | 게임 상태·진행 상태 (작고 단순) |
-| 라우팅 | React Router | 지도·퍼즐·리캡·도감·설정 |
-| 스타일 | CSS Modules + CSS 변수(디자인 토큰) | Figma 토큰과 1:1 |
-| 애니메이션 | CSS 트랜지션 + Framer Motion(필요 시) | 카드·별 연출 |
-| 앱 셸 | **Capacitor 6** | Android/iOS 빌드 |
-| 네이티브 기능 | `@capacitor/haptics`, `@capacitor/preferences`, `@capacitor/local-notifications`, `@capacitor/splash-screen`, `@capacitor-community/text-to-speech` | 진동·저장·복습 알림·스플래시·발음 |
-| PWA | `vite-plugin-pwa` | 웹 오프라인·홈 화면 추가 |
-| 저장소 | 저장 어댑터 1개로 추상화 → 웹: localStorage / 앱: Capacitor Preferences | 플랫폼 차이 숨김 |
-| 분석 (D6) | PostHog 또는 Firebase Analytics — 테스트 기간만 | 원격 지표 |
-| 오류 수집 | Sentry (무료 플랜) | 사용자 기기 오류 |
-| 테스트 | Vitest (로직) · React Testing Library (컴포넌트) · Playwright (E2E, 모바일 뷰포트) | §4 |
-| 품질 | ESLint · Prettier · TypeScript 검사 | PR마다 |
-| CI/CD | GitHub Actions | 테스트·빌드·미리보기 배포 |
-| 웹 배포 | Vercel (PR마다 미리보기 URL) | P5 테스트 링크 |
-| 디자인 | Figma | 와이어프레임·시안·토큰 |
-| 프로젝트 관리 | GitHub Issues + Projects (칸반) | 작업 추적 |
-| 앱 빌드 | Android Studio · Xcode (Mac 필요) | 스토어 빌드 |
+| VS Code | 최신 | 코드 편집 (ESLint·Prettier 확장 사용) |
+| Node.js | 22 LTS | 실행 환경 |
+| pnpm + Turborepo | pnpm 9 | 모노레포 패키지 관리 · 빌드 캐시 |
+| Git + GitHub | – | 소스 관리, 이슈·PR·칸반(Projects) |
+| Android Studio | 최신 | Android 빌드·에뮬레이터 (P6) |
+| Xcode (Mac 필요) | 최신 | iOS 빌드 (P6) |
+
+**② 게임 앱 (`apps/game`)**
+| 도구 | 용도 |
+|---|---|
+| TypeScript (strict) | 언어 |
+| React 18 + Vite | 화면 · 개발 서버 · 빌드 |
+| React Router | 화면 이동 |
+| Zustand | 게임·진행 상태 관리 |
+| CSS Modules + CSS 변수 | 스타일 (Figma 디자인 토큰과 1:1) |
+| Framer Motion | 카드·별 연출 (필요한 곳만) |
+| vite-plugin-pwa | 웹 오프라인 · 홈 화면 추가 |
+| **Capacitor 6** | Android/iOS 앱으로 감싸기 |
+| Capacitor 플러그인 | `haptics`(진동) · `preferences`(저장) · `local-notifications`(복습 알림) · `splash-screen` · `app`(뒤로가기) · `@capacitor-community/text-to-speech`(발음) |
+
+**③ 관리자 웹 (`apps/admin`)**
+| 도구 | 용도 |
+|---|---|
+| React 18 + Vite + TypeScript | 게임과 같은 스택 |
+| TanStack Query | 서버 데이터 읽기·캐시 |
+| TanStack Table | 단어·스테이지 목록 표 (정렬·필터·대량 편집) |
+| React Hook Form + Zod | 입력 폼 · 검사 (Zod 스키마는 `packages/content`와 공유) |
+| Recharts | 대시보드 차트 |
+| dnd-kit | 퍼즐 에디터 끌어 놓기, 스테이지 순서 정렬 |
+
+**④ 서버 (`supabase/`)**
+| 도구 | 용도 |
+|---|---|
+| Supabase Postgres | 단어·테마·스테이지·발행 버전·이벤트 로그·원격 설정·변경 이력 |
+| Supabase Auth | 관리자 로그인 + 2단계 인증 (게임 사용자는 로그인 없음) |
+| Row Level Security | 권한 규칙: 게임은 공개 콘텐츠 읽기 + 로그 쓰기만 |
+| Supabase Storage | 음성 파일 · 발행된 콘텐츠 묶음 |
+| Edge Functions | 콘텐츠 발행(검사 → 묶음 생성), 로그 집계 |
+| Supabase CLI | 로컬 DB 실행, 마이그레이션 |
+
+**⑤ 품질 · 배포 · 모니터링**
+| 도구 | 용도 |
+|---|---|
+| Vitest | 엔진·콘텐츠 단위 테스트 |
+| React Testing Library | 컴포넌트 테스트 |
+| Playwright | E2E (게임 360×640 · 관리자 1280) |
+| ESLint · Prettier · `tsc` | 코드 규칙 · 포맷 · 타입 검사 |
+| GitHub Actions | PR마다 검사·테스트, 마이그레이션 검증 |
+| Dependabot | 의존성 업데이트 · 보안 경고 |
+| Vercel | 게임 웹 · 관리자 웹 배포, PR마다 미리보기 URL |
+| Sentry | 앱·관리자 오류 수집 |
+| PostHog (또는 자체 집계) | 지표 분석 (D6) |
+
+**⑥ 디자인 · 협업**
+| 도구 | 용도 |
+|---|---|
+| Figma | 와이어프레임 · 시안 · 디자인 토큰 · 관리자 화면 |
+| GitHub Projects | 작업 칸반 (이슈 = PRD 요구사항 ID) |
 
 ---
 
@@ -73,32 +125,33 @@
 1. 현재 커밋에 `prototype-v0` 태그 → 참고용 보존
 2. 시안 화면 코드 제거, 재사용 대상(콘텐츠 JSON·검증 로직·테스트)만 새 구조로 이동
 
-### 3.2 폴더 구조
+### 3.2 폴더 구조 (모노레포)
 ```
 word-kingdom/
-├─ docs/                     PRD · UX 설계서 · 개발 계획서 · ADR(결정 기록)
-├─ content/                  테마 JSON (원본), 검수 체크리스트
-├─ scripts/                  퍼즐 배치 보조, 콘텐츠 검사, 음성 파일 생성
-├─ src/
-│  ├─ app/                   라우팅, 앱 진입
-│  ├─ features/
-│  │  ├─ map/                테마 지도
-│  │  ├─ crossword/          엔진(순수 로직) + 화면
-│  │  ├─ wordsearch/
-│  │  ├─ review/             복습 스케줄링 + 수집품
-│  │  ├─ collection/         단어 도감
-│  │  ├─ recap/
-│  │  └─ settings/
-│  ├─ shared/
-│  │  ├─ ui/                 디자인 시스템 컴포넌트 (Figma와 1:1)
-│  │  ├─ platform/           저장·발음·진동 어댑터 (웹/앱 분기)
-│  │  └─ analytics/          이벤트 로깅
-│  └─ styles/tokens.css      디자인 토큰
-├─ tests/e2e/                Playwright
-├─ android/  ios/            Capacitor 생성 (P6)
-└─ .github/workflows/        CI
+├─ docs/                       PRD · UX · 관리자 · 개발 계획 · 운영 · ADR · runbook
+├─ apps/
+│  ├─ game/                    게임 앱
+│  │  ├─ src/app/              라우팅, 앱 진입
+│  │  ├─ src/features/         map · crossword · wordsearch · review · collection · recap · settings
+│  │  ├─ src/platform/         저장·발음·진동·알림 어댑터 (웹/앱 분기는 여기서만)
+│  │  ├─ src/sync/             콘텐츠 내려받기 · 원격 설정 · 로그 전송 (오프라인 큐)
+│  │  ├─ android/ ios/         Capacitor 생성 (P6)
+│  │  └─ e2e/                  Playwright
+│  └─ admin/                   관리자 웹
+│     └─ src/features/         dashboard · words · themes · puzzle-editor · audio · publish
+│                              · notices · remote-config · support · experiments · accounts · audit
+├─ packages/
+│  ├─ engine/                  퍼즐 엔진 (순수 TS, React 없음) + 테스트
+│  ├─ content/                 콘텐츠 스키마(Zod) · 검사 규칙 · 기본 내장 콘텐츠
+│  └─ ui/                      디자인 토큰 · 공통 컴포넌트 (게임·관리자 미리보기 공유)
+├─ supabase/
+│  ├─ migrations/              DB 구조 변경 (Git으로 리뷰)
+│  ├─ functions/               서버 함수 (발행, 집계)
+│  └─ seed.sql                 로컬 개발용 데이터
+├─ scripts/                    퍼즐 배치 보조, 음성 생성, 콘텐츠 백업
+└─ .github/workflows/          CI
 ```
-원칙: **게임 로직(엔진)은 React와 분리된 순수 TypeScript** → 단위 테스트 쉽고, 나중에 엔진만 다른 플랫폼으로 옮길 수 있음.
+원칙: **게임 로직(엔진)은 React와 분리된 순수 TypeScript.** 게임과 관리자 미리보기가 같은 엔진을 쓰므로 "관리자에선 됐는데 게임에선 깨지는" 문제가 생기지 않음.
 
 ### 3.3 브랜치
 - `main`: 항상 배포 가능. 직접 푸시 금지, PR로만.
@@ -152,8 +205,9 @@ JS 번들 gzip 150KB 이하 · 첫 화면 2초(4G) · Lighthouse 모바일 성�
 - [ ] **✅ G1 디자인 승인**
 
 ### P2 기반 구축 (2일)
-- [ ] 시안 코드 정리 (§3.1), React + Vite + TS 골격, ESLint/Prettier
-- [ ] GitHub Actions CI, Vercel 미리보기 배포
+- [ ] 시안 코드 정리 (§3.1), 모노레포 골격 (pnpm + Turborepo), ESLint/Prettier
+- [ ] Supabase 프로젝트 · DB 구조 1차 (단어·테마·스테이지·발행·로그·원격 설정) · 권한 규칙
+- [ ] GitHub Actions CI, Vercel 미리보기 배포 (게임·관리자)
 - [ ] 디자인 토큰 + 공통 UI 컴포넌트
 - [ ] 플랫폼 어댑터(저장·발음·진동), 이벤트 로거
 - [ ] G2 코드 리뷰
@@ -172,14 +226,24 @@ JS 번들 gzip 150KB 이하 · 첫 화면 2초(4G) · Lighthouse 모바일 성�
 - [ ] 원격 분석 연동 (D6), 개인정보 처리방침 초안
 - [ ] G4 기능 완료 리뷰
 
+### P4-A 관리자 A1 (4일, P4와 병행 가능)
+- [ ] 관리자 로그인 · 2단계 인증 · 역할 권한 · 변경 이력 (AD-12)
+- [ ] 단어 사전 · 테마/스테이지 관리 (AD-02, AD-03) — 기존 JSON 가져오기
+- [ ] 발행 · 롤백 (AD-06), 게임 앱의 콘텐츠 내려받기 연동
+- [ ] 원격 설정 (AD-08)
+- [ ] 대시보드 (AD-01)
+- [ ] **✅ G4-A 관리자 승인** (오너가 직접 단어 하나 수정 → 발행 → 게임 반영 확인)
+
 ### P5 사용자 테스트 (1~2주)
 - [ ] 테스터 10~20명 모집, 웹 링크 배포
 - [ ] (D8 승인 시) 동시에 Google Play **비공개 테스트** 트랙 운영 → 12명 × 14일 조건 충족
 - [ ] 지표 리포트 (PRD §2) + 5명 인터뷰
 - [ ] **✅ G5 출시 여부 결정**
 
-### P6 앱 출시 준비 (G5 이후, 약 1~2주 + 심사)
-§6 체크리스트 진행
+### P6 앱 출시 준비 (G5 이후, 약 2~3주 + 심사)
+- [ ] 관리자 A2: 퍼즐 에디터, 음성 파일, 공지, 앱 버전 관리, 실험 관리 (ADMIN_SPEC §5)
+- [ ] 운영 준비: Sentry 알림, 백업 자동화, runbook (OPERATIONS.md)
+- [ ] §6 스토어 체크리스트 진행
 
 ---
 
@@ -234,6 +298,9 @@ JS 번들 gzip 150KB 이하 · 첫 화면 2초(4G) · Lighthouse 모바일 성�
 | PRD §13 결정 사항 D1~D8 답변 | G0 |
 | Figma 계정/파일 공유 방식 결정 (제가 시안을 만들어 공유할지, 디자이너 협업할지) | G0 |
 | Vercel 연결 (웹 미리보기) | P2 |
+| Supabase 계정 · 프로젝트 생성 (무료 플랜) | P2 |
+| Sentry 계정 (무료) | P2 |
+| 콘텐츠 작성·검수 담당자 (관리자 Editor/Reviewer 계정 대상) | P4-A |
 | Google Play 개발자 계정 | P5 시작 전 (14일 테스트 때문에) |
 | Apple 개발자 계정 + Mac 빌드 환경 | P6 |
 | 테스터 10~20명 | P5 |

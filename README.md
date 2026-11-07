@@ -10,7 +10,9 @@
 |---|---|
 | [docs/PRD.md](docs/PRD.md) | 제품 요구사항 — 목표·지표, 기능별 인수 조건, **승인 요청 사항(§13)** |
 | [docs/UX_SPEC.md](docs/UX_SPEC.md) | UX 설계 — 정보 구조, 사용자 흐름, 화면 명세, 디자인 시스템 |
-| [docs/DEV_PLAN.md](docs/DEV_PLAN.md) | 개발 계획 — 기술 스택, 승인 게이트, 일정, 앱스토어 출시 계획 |
+| [docs/ADMIN_SPEC.md](docs/ADMIN_SPEC.md) | 관리자 — 메뉴 구조, 권한, 대시보드·콘텐츠 관리·발행·원격 설정 |
+| [docs/DEV_PLAN.md](docs/DEV_PLAN.md) | 개발 계획 — **개발 도구 전체 목록**, 모노레포 구조, 승인 게이트, 일정, 앱스토어 출시 |
+| [docs/OPERATIONS.md](docs/OPERATIONS.md) | 운영·유지보수 — 모니터링, 정기 점검, 릴리스·롤백, 백업, 보안, 비용 |
 | [docs/HANDOFF.md](docs/HANDOFF.md) | 기획 대화 인계 브리프 (원본) |
 
 > ⚠️ 아래 코드는 PRD 승인 전에 만든 **기술 검증용 시안(Prototype v0)** 입니다.
