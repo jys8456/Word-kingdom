@@ -14,6 +14,7 @@
 | [docs/DEV_PLAN.md](docs/DEV_PLAN.md) | 개발 계획 — **개발 도구 전체 목록**, 모노레포 구조, 승인 게이트, 일정, 앱스토어 출시 |
 | [docs/COST.md](docs/COST.md) | 비용 — 항목별 무료 범위·유료 전환 시점, 첫해 최소 약 ₩17만 |
 | [docs/OPERATIONS.md](docs/OPERATIONS.md) | 운영·유지보수 — 모니터링, 정기 점검, 릴리스·롤백, 백업, 보안, 비용 |
+| [docs/OPEN_QUESTIONS.md](docs/OPEN_QUESTIONS.md) | **오너 확인 질문 목록 (답변 대기)** |
 | [docs/HANDOFF.md](docs/HANDOFF.md) | 기획 대화 인계 브리프 (원본) |
 
 > ⚠️ 아래 코드는 PRD 승인 전에 만든 **기술 검증용 시안(Prototype v0)** 입니다.
